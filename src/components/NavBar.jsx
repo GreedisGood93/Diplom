@@ -1,9 +1,10 @@
 import { Mail, Notifications, Spoke } from '@mui/icons-material'
-import { AppBar, Box, Toolbar, Typography, styled, InputBase, Badge, Avatar } from '@mui/material'
-import React from 'react'
+import { AppBar, Box, Toolbar, Typography, styled, InputBase, Badge, Avatar, Menu, MenuItem } from '@mui/material'
+import React, { useState } from 'react'
 const MyToolBar = styled(Toolbar)({
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    backgroundColor: 'green'
 })
 const SearchInp = styled('div')(({ theme }) => ({
     backgroundColor: 'white',
@@ -25,6 +26,7 @@ const IconsBarSmall = styled(Box)(({ theme }) => ({
 }))
 
 export const NavBar = () => {
+    const [openMenu, setOpenMenu] = useState(false)
     return (
         <AppBar position='sticky'>
             <MyToolBar>
@@ -43,13 +45,33 @@ export const NavBar = () => {
                         <Notifications fontSize='large' />
                     </Badge>
                     <Badge>
-                        <Avatar sx={{ width: 30, height: 30 }}>AG</Avatar>
+                        <Avatar sx={{ width: 30, height: 30 }}
+                            onClick={e => setOpenMenu(true)}
+                        >AG</Avatar>
                     </Badge>
                 </IconsBar>
-                <IconsBarSmall>
+                <IconsBarSmall onClick={e => setOpenMenu(true)}>
                     <Typography>Aziz Gadzhiev</Typography>
                 </IconsBarSmall>
             </MyToolBar>
+            <Menu
+                id="demo-positioned-menu"
+                aria-labelledby="demo-positioned-button"
+                open={openMenu}
+                onClose={e => setOpenMenu(false)}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+            >
+                <MenuItem >Profile</MenuItem>
+                <MenuItem >My account</MenuItem>
+                <MenuItem >Logout</MenuItem>
+            </Menu>
         </AppBar>
     )
 }

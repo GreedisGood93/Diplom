@@ -4,6 +4,7 @@ import { NewsFeed } from "./components/NewsFeed";
 import SecondBar from "./components/SecondBar";
 import { SideBar } from "./components/SideBar";
 import { NavBar } from "./components/NavBar";
+import { AddNewPost } from "./components/AddNewPost";
 function App() {
   return (
     <div>
@@ -14,6 +15,7 @@ function App() {
           <NewsFeed />
           <SecondBar />
         </Stack>
+        <AddNewPost />
       </Box>
     </div>
   );
